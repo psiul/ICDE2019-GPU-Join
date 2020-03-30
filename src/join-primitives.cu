@@ -1036,6 +1036,7 @@ __global__ void join_partitioned_aggregate (
                         }   
 
                         off += (off < bucket_size)? blockDim.x : rem_s;
+                        base += blockDim.x;
                     }
 
                     if (base >= bucket_size) {

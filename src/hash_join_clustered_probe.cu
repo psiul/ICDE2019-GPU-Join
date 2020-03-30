@@ -1596,11 +1596,11 @@ unsigned int outOfGPU_Join2_payload (int* R, int* Pr, size_t RelsNum, int* S, in
                 
                 cudaStreamWaitEvent (streams_R[2], done_S[event_id], 0);
 
-                int out_size = 64000000; 
+                //int out_size = 64000000; 
 
-                cudaMemcpyAsync(output_host + out_cnt, output[event_id % 2], out_size*sizeof(int), cudaMemcpyDeviceToHost, streams_R[2]); 
+                //cudaMemcpyAsync(output_host + out_cnt, output[event_id % 2], out_size*sizeof(int), cudaMemcpyDeviceToHost, streams_R[2]); 
 
-                out_cnt += out_size;
+                //out_cnt += out_size;
 
                 if (out_cnt > 4*SelsNum) {
                     out_cnt = 0;
