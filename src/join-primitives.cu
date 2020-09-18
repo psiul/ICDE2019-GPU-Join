@@ -1053,7 +1053,7 @@ __global__ void join_partitioned_aggregate (
                 off = 0;
 
                 /*probe from R-side*/
-                for (; 0 < len_R; off += 4*blockDim.x, len_R -= 4*blockDim.x) {
+                for (; 0 < len_R; len_R -= 4*blockDim.x) {
                     vec4 data_R = *(reinterpret_cast<const vec4 *>(R + bucket_size * it + off + 4*threadIdx.x));
                     vec4 data_Pr = *(reinterpret_cast<const vec4 *>(Pr + bucket_size * it + off + 4*threadIdx.x));
                     int l_cnt_R = len_R - 4 * threadIdx.x;
@@ -1077,6 +1077,8 @@ __global__ void join_partitioned_aggregate (
                             }
                         }                   
                     }
+
+                    off += 4*blockDim.x;
 
                     if (off >= bucket_size) {
                         it = R_chain[it];
